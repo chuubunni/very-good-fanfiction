@@ -1,17 +1,19 @@
 import ctypes
-
-img = "C:/Users/chuu/Documents/GitHub/very-good-fanfiction/THEimage.jpg"
-
-def automaticChange():
-    ctypes.windll.user32.SystemParametersInfoW(20, 0, img, 0)
-
-automaticChange()
-
 import requests
 import os
 from urllib.parse import urlparse
+import sys
 
-def download_image(url, save_dir="downloads"):
+
+# img = "C:/Users/chuu/Documents/GitHub/very-good-fanfiction/THEimage.jpg"
+
+# def automaticChange():
+#     ctypes.windll.user32.SystemParametersInfoW(20, 0, img, 0)
+
+# automaticChange()
+
+
+def download_image(url, save_dir=os.getcwd()):
     """
     Downloads an image from the given URL and saves it locally.
     
@@ -38,7 +40,7 @@ def download_image(url, save_dir="downloads"):
         # Extract filename from URL or generate one
         filename = os.path.basename(parsed_url.path)
         if not filename:
-            filename = "downloaded_image.jpg"
+            filename = "THEimage.jpg"
 
         # Save image
         file_path = os.path.join(save_dir, filename)
@@ -55,8 +57,14 @@ def download_image(url, save_dir="downloads"):
     except Exception as ex:
         print(f"Unexpected error: {ex}")
 
+
+def automaticChange(img):
+    ctypes.windll.user32.SystemParametersInfoW(20, 0, img, 0)
+
+
 # Example usage:
 if __name__ == "__main__":
     # Replace with your AI-generated image URL
-    image_url = "https://example.com/path/to/ai_image.jpg"
-    download_image(image_url)
+    image_url = "https://tfwiki.net/mediawiki/images2/3/36/MTMTE48_Sunder_face.jpg"
+    img = download_image(image_url)
+    automaticChange(img)
